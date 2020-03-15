@@ -14,6 +14,31 @@
 
             <!--  Long press is overriding the item tapped commands  -->
 
+            <!--  A CollectionView version  -->
+            <CollectionView
+                x:Name="carsCollection"
+                ItemsSource="{Binding Cars}"
+                SelectionMode="Single"
+                SelectionChangedCommand="{Binding TapCommand}"
+                SelectionChangedCommandParameter="{Binding Source={x:Reference carsCollection}, Path=SelectedItem}"
+                BackgroundColor="Orange">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <ContentView>
+                            <StackLayout
+                                effects:LongPressedEffect.Command="{Binding Path=BindingContext.LongTapCommand, Source={x:Reference ThisPage}}"
+                                effects:LongPressedEffect.CommandParameter="{Binding .}">
+                                <Label Text="CollectionView: Long Press works but not normal selection" />
+                                <StackLayout.Effects>
+                                    <effects:LongPressedEffect />
+                                </StackLayout.Effects>
+                            </StackLayout>
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
+            
             <flv:FlowListView
                 FlowItemsSource="{Binding Cars}"
                 FlowItemTappedCommand="{Binding TapCommand}"
@@ -64,31 +89,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
-            <!--  A CollectionView version  -->
-            <CollectionView
-                x:Name="carsCollection"
-                ItemsSource="{Binding Cars}"
-                SelectionMode="Single"
-                SelectionChangedCommand="{Binding TapCommand}"
-                SelectionChangedCommandParameter="{Binding Source={x:Reference carsCollection}, Path=SelectedItem}"
-                BackgroundColor="Orange">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <ContentView>
-                            <StackLayout
-                                effects:LongPressedEffect.Command="{Binding Path=BindingContext.LongTapCommand, Source={x:Reference ThisPage}}"
-                                effects:LongPressedEffect.CommandParameter="{Binding .}">
-                                <Label Text="CollectionView: Long Press works but not normal selection" />
-                                <StackLayout.Effects>
-                                    <effects:LongPressedEffect />
-                                </StackLayout.Effects>
-                            </StackLayout>
-                        </ContentView>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
 
 
         </StackLayout>
