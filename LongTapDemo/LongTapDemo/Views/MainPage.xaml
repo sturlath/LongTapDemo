@@ -12,7 +12,10 @@
     <ContentPage.Content>
         <StackLayout>
 
-            <!--  Long press is overriding the item tapped commands  -->
+            <!--
+                Here I have 3 list versions (CollectionView,FlowListView and ListView)
+                Where the long press is overriding the item tapped commands
+            -->
 
             <!--  A CollectionView version  -->
             <CollectionView
@@ -37,8 +40,8 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            
-            
+
+
             <flv:FlowListView
                 FlowItemsSource="{Binding Cars}"
                 FlowItemTappedCommand="{Binding TapCommand}"
